@@ -2,7 +2,11 @@ machine:
   # 環境改成 docker
   services:
     - docker
-
+dependencies:
+  pre:
+    # 安裝 eb
+    - pip install --upgrade pip
+    - pip install -U docker-compose
 test:
   override:
     - ./node_modules/.bin/mocha
