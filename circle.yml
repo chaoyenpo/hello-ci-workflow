@@ -9,5 +9,5 @@ test:
   override:
     - ./node_modules/.bin/mocha
     # 使用 curl 測試 docker 是否有順利執行 node
-    - docker-compose up
+    - docker-compose up -d
     - curl --retry 10 --retry-delay 5 -v http://localhost:3000
