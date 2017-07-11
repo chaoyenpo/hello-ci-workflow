@@ -4,9 +4,10 @@ machine:
     - docker
 dependencies:
   pre:
-    # 安裝 eb
-    - sudo apt-get upgrade docker-engine
+    # 更新 docker-engine
+    - sudo apt-get update && sudo apt-get upgrade docker-engine
     - pip install --upgrade pip
+    # 更新 docker-compose
     - pip install -U docker-compose
 test:
   override:
