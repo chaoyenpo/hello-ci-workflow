@@ -1,14 +1,10 @@
 machine:
-  # 環境改成 docker
+  pre:
+  # https://discuss.circleci.com/t/docker-1-10-0-is-available-beta/2100
+  - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+  - pip install docker-compose==1.8.0
   services:
     - docker
-dependencies:
-  pre:
-    # 更新 docker-engine
-    - sudo apt-get update && sudo apt-get upgrade docker-engine
-    - pip install --upgrade pip
-    # 更新 docker-compose
-    - pip install -U docker-compose
 test:
   override:
     - ./node_modules/.bin/mocha
