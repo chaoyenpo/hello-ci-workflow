@@ -72,10 +72,10 @@ workflows:
           filters:
             branches:
               only: master
-      - test2:
-          requires:
-            - test1
       - hold:
          type: approval
          requires:
            - test1
+      - test2:
+          requires:
+            - hold
