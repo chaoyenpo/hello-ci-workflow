@@ -1,9 +1,14 @@
 version: 2
 jobs:
-   build:
-     working_directory: ~/hello-ci-workflow
-     docker:
-       - image: circleci/node:latest
-     steps:
-       - checkout
-       - run: echo "hello world"
+  build:
+    docker:
+      - image: circleci/node:latest
+      - image: mysql:5.7
+        environment:
+          TZ: "/usr/share/zoneinfo/Asia/Taipei"
+    working_directory: ~/hello-ci-workflow
+    environment:
+      TZ: "/usr/share/zoneinfo/Asia/Taipei"
+    steps:
+     - checkout
+     - run: echo "hello world"
