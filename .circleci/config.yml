@@ -30,7 +30,7 @@ jobs:
       - run:
           name: echo-test-run
           command: echo "hello world run one"
-  test2:
+  echo:
     working_directory: ~/hello-ci-workflow
     docker:
       - image: circleci/node:4.8.2
@@ -63,4 +63,4 @@ workflows:
           filters:
             branches:
               only: master
-      - test2
+      - echo
