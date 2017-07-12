@@ -21,24 +21,15 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - .node_modules
-  echo-test-1:
+  echo-test:
   	working_directory: ~/hello-ci-workflow
     docker:
       - image: circleci/node:4.8.2
       - image: mongo:3.4.4
     steps:
       - run:
-          name: echo-test-1-run
+          name: echo-test-run
           command: echo "hello world run one"
-  echo-test-2:
-  	working_directory: ~/hello-ci-workflow
-    docker:
-      - image: circleci/node:4.8.2
-      - image: mongo:3.4.4
-    steps:
-      - run:
-          name: echo-test-2-run
-          command: echo "hello world run two"
   test:
     working_directory: ~/hello-ci-workflow
     docker:
@@ -63,10 +54,7 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - echo-test-1:
-      	  requires:
-            - build
-      - echo-test-2:
+      - echo-test:
       	  requires:
             - build
       - test:
