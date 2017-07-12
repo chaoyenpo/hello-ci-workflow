@@ -21,4 +21,4 @@ deployment:
   production:
     branch: master
     commands:
-      - eb deploy env-production
+      # - eb deploy env-production

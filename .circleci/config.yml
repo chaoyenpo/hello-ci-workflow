@@ -1,0 +1,9 @@
+version: 2
+jobs:
+   build:
+     working_directory: ~/hello-ci-workflow
+     docker:
+       - image: circleci/node:latest
+     steps:
+       - checkout
+       - run: echo "hello world"
