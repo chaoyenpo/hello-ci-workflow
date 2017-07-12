@@ -67,6 +67,3 @@ workflows:
          type: approval
          requires:
            - test1
-      - test2:
-      	  requires:
-      	  	- hold
