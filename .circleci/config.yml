@@ -30,6 +30,15 @@ jobs:
       - run:
           name: echo-test-run
           command: echo "hello world run one"
+  test2:
+    working_directory: ~/hello-ci-workflow
+    docker:
+      - image: circleci/node:4.8.2
+      - image: mongo:3.4.4
+    steps:
+      - run:
+          name: echo-test-run
+          command: echo "hello world run one"
       # - run:
       #     name: test
       #     command: npm test
@@ -63,6 +72,9 @@ workflows:
           filters:
             branches:
               only: master
+      - test2:
+          requires:
+            - test1
       - hold:
          type: approval
          requires:
