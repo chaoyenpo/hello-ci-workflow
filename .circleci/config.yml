@@ -21,7 +21,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - .node_modules
-  echo:
+  test2:
     working_directory: ~/hello-ci-workflow
     docker:
       - image: circleci/node:4.8.2
@@ -63,6 +63,6 @@ workflows:
           filters:
             branches:
               only: master
-      - echo:
+      - test2:
       	  requires:
       	  	- test1
