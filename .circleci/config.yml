@@ -63,8 +63,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - echo-test-1
-      - echo-test-2
+      - echo-test-1:
+      	  requires:
+            - build
+      - echo-test-2:
+      	  requires:
+            - build
       - test:
           requires:
             - build
