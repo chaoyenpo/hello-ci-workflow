@@ -21,7 +21,16 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - .node_modules
-  test:
+  test1:
+    working_directory: ~/hello-ci-workflow
+    docker:
+      - image: circleci/node:4.8.2
+      - image: mongo:3.4.4
+    steps:
+      - run:
+          name: echo-test-run
+          command: echo "hello world run one"
+  test2:
     working_directory: ~/hello-ci-workflow
     docker:
       - image: circleci/node:4.8.2
@@ -48,9 +57,10 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test:
+      - test1:
           requires:
             - build
           filters:
             branches:
               only: master
+      - test2
