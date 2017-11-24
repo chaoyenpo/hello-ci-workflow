@@ -1,16 +1,13 @@
 # Dockerfile
 
-# 從 [Docker Hub](https://hub.docker.com/) 安裝 Node.js image。
-FROM node:6.10-alpine
+FROM notnoopci/php:7-apache-node-browsers
 
-# 設定 container 的預設目錄位置
-WORKDIR /hello-ci-workflow
-
-# 將專案根目錄的檔案加入至 container
-# 安裝 npm package
-ADD . /hello-ci-workflow
-RUN npm install
-
-# 開放 container 的 3000 port
-EXPOSE 3000
-CMD npm start
+RUN buildDeps='gcc libc6-dev make' \
+    && sudo apt-get update \
+    && sudo apt-get install -y $buildDeps \
+    && sudo apt-get install python-pip \
+    && sudo pip install --upgrade awsebcli \
+    && sudo apt-get install -y zlib1g-dev \
+    && sudo docker-php-ext-install zip \
+    && sudo rm -rf /var/lib/apt/lists/* \
+    && sudo apt-get purge -y --auto-remove $buildDeps
